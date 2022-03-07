@@ -1,0 +1,103 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+public class Homework {
+
+    // Using any technique presented in our last course, please do the following:
+    //
+    // 1. Parse the given text to check if it contains "Waldo" and print the result
+    // 2. Parse the given text to replace regex "W[a-z]ld[a-z]" with "*****" and print the resulting text
+    // 3. Tokenize the given text using "-" and print the number of resulting tokens
+    //
+    // - Write all your solutions as separate static methods inside this class
+    // - Call all your methods inside "main" (to be run on startup)
+
+    static String text = "Walda-Walde-Waldi-Waldu-Weldo-Wildo-Woldo-Wuldo-"
+            + "Weldo-Wildo-Woldo-Wuldo-Walda-Walde-Waldi-Waldu-"
+            + "Walda-Walde-Waldi-Waldu-Weldo-Wildo-Woldo-Wuldo-"
+            + "Weldo-Wildo-Woldo-Wuldo-Walda-Walde-Waldi-Waldu-"
+            + "Walda-Walde-Waldi-Waldu-Weldo-Wildo-Woldo-Wuldo-"
+            + "Weldo-Wildo-Woldo-Wuldo-Walda-Walde-Waldi-Waldu-"
+            + "Walda-Walde-Waldi-Waldu-Weldo-Wildo-Woldo-Wuldo-"
+            + "Weldo-Wildo-Woldo-Wuldo-Walda-Walde-Waldi-Waldu-"
+            + "Walda-Walde-Waldi-Waldu-Weldo-Wildo-Waldo-Wuldo-"
+            + "Weldo-Wildo-Woldo-Wuldo-Walda-Walde-Waldi-Waldu-"
+            + "Walda-Walde-Waldi-Waldu-Weldo-Wildo-Woldo-Wuldo-"
+            + "Weldo-Wildo-Woldo-Wuldo-Walda-Walde-Waldi-Waldu";
+
+    public static void main(String[] args) {
+
+        // Add your method calls here.
+        Scanner in = new Scanner(System.in);
+        boolean isNewStart = true;
+        String option = "start";
+        while (isNewStart == true && option != "exit") {
+            System.out.println("available options: [findWaldo, hideWaldo, tokenize, exit]");
+            System.out.print("option=");
+            option = in.nextLine();
+
+            switch (option) {
+                case "findWaldo":
+                    boolean findWaldo = false;
+                    System.out.println(findWaldo(text));
+                    break;
+//                case "hideWaldo":
+//                    Movie movie = createMovie();
+//                    currentMovies.addMovieToMovies(movie);
+//                    break;
+//                case "addEvent":
+//                    Event event = createEvent();
+//                    allEvents.addEventToEvents(event);
+//                    break;
+//                case "listCustomers":
+//                    listCustomers(reservationList);
+//                    break;
+//                case "listMovies":
+//                    listMovies(currentMovies);
+//                    break;
+//                case "listEvents":
+//                    listEvents(allEvents);
+//                    break;
+                case "exit":
+                    System.exit(0);
+                    break;
+                default:
+                    System.err.println("Invalid option");
+
+            }
+        }
+
+
+//        System.out.println(text);
+
+    }
+
+
+    // Add your methods here.
+    public static boolean findWaldo(String text) {
+       boolean findWaldo = Homework.text.contains("Waldo");
+       return findWaldo;
+
+    }
+    public static String hideWaldo(String text) {
+        String waldoRegex = "W[a-z]ld[a-z]";
+        Pattern regexPattern = Pattern.compile(waldoRegex);
+        Matcher regexMatcher = regexPattern.matcher(text);
+        System.out.println("\n SEARCHING PARTS MATCHING REGEX \"+="+ waldoRegex +"\" IN THE GIVEN TEXT:");
+        int counter = 0;
+
+        while (regexMatcher.find()){
+            String match = regexMatcher.group();
+            int startIndex = regexMatcher.start();
+            int endIndex = regexMatcher.end();
+            int lenght = endIndex - startIndex;
+            System.out.println("FOUND \""+ match + "\" AT INDEX" + startIndex + ", CONTAINING " + lenght + " CHARACTER(S)");
+            counter++;
+
+        }
+        System.out.println("FOUND A TOTAL OF " + counter + "MATCH(ES)");
+        return text;
+    }
+
+}
