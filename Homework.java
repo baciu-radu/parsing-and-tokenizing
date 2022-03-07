@@ -45,10 +45,9 @@ public class Homework {
                 case "hideWaldo":
                     hideWaldo(text);
                     break;
-//                case "tokenize":
-//                    Event event = createEvent();
-//                    allEvents.addEventToEvents(event);
-//                    break;
+                case "tokenize":
+                    tokenize(text);
+                    break;
                 case "exit":
                     System.exit(0);
                     break;
@@ -92,6 +91,16 @@ public class Homework {
         System.out.println("UPDATED TEXT: "+ updatedText);
 
 
+    }
+    public static void tokenize (String text) {
+        String waldoRegex = "W[a-z]ld[a-z]";
+        String[] tokens = text.split(waldoRegex);
+        System.out.println("\n USING REGEX \"" + waldoRegex + "\" AS A DELIMITER TO TOKENIZE THE GIVEN TEXT:");
+        for (int i = 0; i< tokens.length; i++) {
+            String token = tokens[i];
+            System.out.println("TOKEN #" + (i+1) + ": " + token);
+        }
+        System.out.println("CREATED A TOTAL OF " + tokens.length + "TOKEN(S)");
     }
 
 }
