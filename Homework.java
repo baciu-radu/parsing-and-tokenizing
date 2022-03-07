@@ -42,22 +42,12 @@ public class Homework {
                     boolean findWaldo = false;
                     System.out.println(findWaldo(text));
                     break;
-//                case "hideWaldo":
-//                    Movie movie = createMovie();
-//                    currentMovies.addMovieToMovies(movie);
-//                    break;
-//                case "addEvent":
+                case "hideWaldo":
+                    hideWaldo(text);
+                    break;
+//                case "tokenize":
 //                    Event event = createEvent();
 //                    allEvents.addEventToEvents(event);
-//                    break;
-//                case "listCustomers":
-//                    listCustomers(reservationList);
-//                    break;
-//                case "listMovies":
-//                    listMovies(currentMovies);
-//                    break;
-//                case "listEvents":
-//                    listEvents(allEvents);
 //                    break;
                 case "exit":
                     System.exit(0);
@@ -80,7 +70,7 @@ public class Homework {
        return findWaldo;
 
     }
-    public static String hideWaldo(String text) {
+    public static void hideWaldo(String text) {
         String waldoRegex = "W[a-z]ld[a-z]";
         Pattern regexPattern = Pattern.compile(waldoRegex);
         Matcher regexMatcher = regexPattern.matcher(text);
@@ -97,7 +87,11 @@ public class Homework {
 
         }
         System.out.println("FOUND A TOTAL OF " + counter + "MATCH(ES)");
-        return text;
+        System.out.println("REPLACING PARTS MATCHING REGEX" + waldoRegex + " IN THE GIVEN TEXT ");
+        String updatedText= regexMatcher.replaceAll("*****");
+        System.out.println("UPDATED TEXT: "+ updatedText);
+
+
     }
 
 }
